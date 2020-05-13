@@ -1,26 +1,31 @@
-//back-end
-var palindrome = function(word) {
-  var characters = word.split("");
-  var characters2 = word.split("");
-  var backwardsCharacters = characters2.reverse();  
-  if (characters.join() === backwardsCharacters.join()) {
+// //back-end
+var palindrome = function(input) {
+  var inputSplit = input.split("");
+  var inputSplitCopy = inputSplit.slice();
+  var inputSplitReverse = inputSplitCopy.reverse();
+  var forward = inputSplit.toString();
+  var backward = inputSplitReverse.toString();
+
+  if (forward === backward) {
     return true;
   } else {
     return false;
   }
-}
-
-
+};
 
 //front-end
 $(document).ready(function() {
   $("form#palindrome").submit(function(event) {
     event.preventDefault();
     var input = $("input#word").val();
-    const result = palindrome(input);
-    $("#result").text(result);
-  
-   
+    var result = palindrome(input);
+    $("#result").show();
+    $(".palindrome").text(input);
+    if (result === true) {
+      $(".not").text("");
+    } else {
+      $(".not").text("not");
+    }
   });
 });
 
